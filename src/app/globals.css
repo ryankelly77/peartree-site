@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+/*
+ * PearTree Companies design tokens.
+ * Colors come from the logo: bark brown and pear gold on a warm paper ground.
+ */
+@theme {
+  /* Light surfaces */
+  --color-paper: #f6f2e9;
+  --color-card: #fbf8f1;
+  --color-sand: #ede6d6;
+  --color-cell: #f2ecdd;
+
+  /* Ink and text */
+  --color-ink: #211b0f;
+  --color-body: #3b3220;
+  --color-bark: #4e3c11;
+  --color-muted: #6a5e45;
+
+  /* Rules */
+  --color-rule: #d9cfb8;
+  --color-rule-soft: #e6decb;
+  --color-rule-strong: #cfc4aa;
+
+  /* Dark surfaces */
+  --color-night: #1d180e;
+  --color-night-raised: #2a2316;
+  --color-night-rule: #3a3122;
+  --color-night-field: #4a3f2c;
+  --color-night-text: #cfc5ae;
+  --color-night-muted: #b5a98e;
+  --color-cream: #efe8d8;
+  --color-error-on-dark: #f2b8a0;
+
+  /* Accent */
+  --color-gold: #c9a13f;
+  --color-gold-hover: #d6b04f;
+
+  /* Logo plate for marks built for dark backgrounds */
+  --color-plate-dark: #111111;
+
+  /* Display type scale */
+  --text-display-xl: clamp(44px, 6.4vw, 92px);
+  --text-display-xl--line-height: 0.98;
+  --text-display-xl--letter-spacing: -0.02em;
+
+  --text-display-company: clamp(48px, 7vw, 104px);
+  --text-display-company--line-height: 0.96;
+  --text-display-company--letter-spacing: -0.02em;
+
+  --text-display-cta: clamp(40px, 5.4vw, 76px);
+  --text-display-cta--line-height: 0.98;
+  --text-display-cta--letter-spacing: -0.02em;
+
+  --text-display-lg: clamp(34px, 4.4vw, 60px);
+  --text-display-lg--line-height: 1.02;
+  --text-display-lg--letter-spacing: -0.015em;
+
+  --text-display-md: clamp(32px, 4vw, 52px);
+  --text-display-md--line-height: 1.04;
+  --text-display-md--letter-spacing: -0.015em;
+
+  --text-lead: clamp(18px, 1.6vw, 21px);
+  --text-lead--line-height: 1.6;
+
+  --radius-xs: 2px;
+}
+
+@theme inline {
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+/* Archivo is a variable font with a width axis; the wordmark-like headlines use it wide. */
+@utility stretch-112 {
+  font-stretch: 112%;
+}
+@utility stretch-115 {
+  font-stretch: 115%;
+}
+@utility stretch-116 {
+  font-stretch: 116%;
+}
+@utility stretch-118 {
+  font-stretch: 118%;
+}
+@utility stretch-122 {
+  font-stretch: 122%;
+}
+
+/* Page layout */
+@utility shell {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+}
+@utility gutter {
+  padding-inline: clamp(16px, 4vw, 48px);
+}
+@utility section-y {
+  padding-block: clamp(64px, 8vw, 120px);
+}
+@utility section-y-md {
+  padding-block: clamp(64px, 8vw, 112px);
+}
+@utility section-y-sm {
+  padding-block: clamp(56px, 7vw, 104px);
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-width: 0;
+    background-color: var(--color-paper);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings set tight by default; the display-* text utilities set their own line heights. */
+  :where(h1, h2, h3, h4, h5, h6) {
+    line-height: 1.15;
+  }
+
+  /* Links in running text stay underlined; navigation and buttons opt out with `no-underline`. */
+  a {
+    color: var(--color-bark);
+    text-decoration-line: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  a:hover {
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  .surface-dark :focus-visible {
+    outline-color: var(--color-gold);
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-ink);
+  }
+
+  summary {
+    list-style-position: outside;
+  }
+}

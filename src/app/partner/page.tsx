@@ -36,8 +36,8 @@ const structures = [
   {
     label: "Structure 01",
     title: "Joint venture",
-    body: "We form a new company together and split ownership, costs and revenue. Best when the product is new and both sides are building from zero.",
-    note: "EDIAGD: a 50/50 split of costs and revenue",
+    body: "We form a new company together and share ownership. Best when the product is new and both sides are building from zero.",
+    note: "In practice: EDIAGD",
   },
   {
     label: "Structure 02",

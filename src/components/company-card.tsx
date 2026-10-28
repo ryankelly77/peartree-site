@@ -80,8 +80,9 @@ export function CompanyCard({ company }: { company: Company }) {
       <h3 className="m-0 text-[28px] font-bold leading-[1.1] stretch-118">{company.name}</h3>
       <p className="m-0 grow text-base leading-[1.6] text-body">{company.summary}</p>
       <div className="flex flex-wrap items-center justify-between gap-x-3 border-t border-rule-soft pt-4 text-sm">
-        <FooterItem item={company.footer[0]} />
-        <FooterItem item={company.footer[1]} />
+        {company.footer.map((item, index) => (
+          <FooterItem key={index} item={item} />
+        ))}
       </div>
     </article>
   );

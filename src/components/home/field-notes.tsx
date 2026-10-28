@@ -5,7 +5,7 @@ const notes = [
   {
     kicker: "EDIAGD · Partnership · Automotive",
     title: "A coach's playbook, turned into a daily habit",
-    body: "Mitch Hardt has coached dealership service advisors for [YEARS] years. We organized his library into a structured curriculum and built the app advisors open each morning: a stat, a coaching cue and a short video, with streaks and rewards that keep them coming back.",
+    body: "Mitch Hardt coaches dealership service advisors. We organized his library into a structured curriculum and built the app advisors open each morning: a stat, a coaching cue and a short video, with streaks and rewards that keep them coming back.",
     stats: [
       { value: "1,693", label: "coaching cues" },
       { value: "42", label: "courses" },

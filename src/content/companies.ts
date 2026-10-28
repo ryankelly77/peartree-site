@@ -133,6 +133,7 @@ export const companies: Company[] = [
         "Raptor Vending puts fresh meals, snacks and drinks in San Antonio office and medical buildings, with no minimums and a monthly report for every building.",
       lead: "Fresh meals, snacks and drinks for office and medical buildings in San Antonio, run with the reporting of a software company.",
       facts: [
+        { label: "Relationship", value: "Co-founded with Cristian" },
         { label: "Market", value: "San Antonio, Texas" },
         { label: "Partnership path", value: "Build a business" },
       ],

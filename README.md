@@ -84,9 +84,9 @@ None remain. Facts that were still unknown were taken out rather than written as
 | Was | Now | To restore it |
 | --- | --- | --- |
 | Tracie's bio | Her card shows name and role only | Add `bio` back to her entry in `src/content/site.ts`; it is optional on `TeamMember` |
-| Cristian's last name | The "Relationship" fact is gone from Raptor's story | Add `{ label: "Relationship", value: "Co-founded with Cristian <last name>" }` to `story.facts` |
+| Cristian's last name | Raptor's "Relationship" fact reads "Co-founded with Cristian" | Add the surname to that value in `story.facts` |
 | Year Raptor started | The "Started" fact is gone | Add `{ label: "Started", value: "<year>" }` to `story.facts` |
-| Mitch's years coaching | "has spent his career coaching dealership service advisors" | Reword with the number in `src/components/home/field-notes.tsx` |
+| Mitch's years coaching | "Mitch Hardt coaches dealership service advisors" | Reword with the number in `src/components/home/field-notes.tsx` |
 | EDIAGD launch date | The card footer shows one item instead of two | Add `{ text: "Launching <date>" }` to its `footer`, which takes one or two items |
 | Raptor lobby photo | No photo block renders | Set `story.photo.src`; the block appears on its own |
 

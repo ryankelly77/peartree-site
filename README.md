@@ -25,6 +25,7 @@ npm run lint
 | Design tokens, type scale, base styles | `src/app/globals.css` |
 | Fonts (self-hosted Archivo variable + IBM Plex Mono) | `src/fonts/`, `src/app/fonts.ts` |
 | Logos | `public/brand/`, `public/logos/` |
+| Open Graph / Twitter share image | `src/app/opengraph-image.tsx` |
 | 404 handling for unknown company slugs | `src/proxy.ts` |
 
 ### Add or change a company
@@ -39,6 +40,17 @@ Logos go in `public/logos/` as WebP sized about 2x their display height. Set `pl
 - Headlines use Archivo's width axis: `stretch-118` and friends set `font-stretch`. Display sizes are `text-display-xl`, `-lg`, `-md`, `-cta` and `-company`.
 - Section labels use `<Eyebrow>`, section titles `<SectionHeader>`, buttons `<ButtonLink>` (all in `src/components/ui.tsx`).
 - The original design canvas is the source of truth for layout and copy.
+
+### The share image
+
+`src/app/opengraph-image.tsx` renders the 1200x630 card at build time with `ImageResponse`, and the root layout's metadata picks it up for every route as both `og:image` and `twitter:image`.
+
+Satori, which backs `ImageResponse`, only parses TTF, OTF and WOFF fonts, and it draws PNG and JPEG but skips WebP without erroring. The site's own `archivo-latin-wdth.woff2` and `peartree-companies-logo.webp` can't be used there, so the route reads two assets built for it alone:
+
+- `src/fonts/archivo-og-bold.ttf` - Archivo pinned to the headline's axes (`wght` 750, `wdth` 118), so the card matches the hero's `font-[750] stretch-118`. Satori can't apply variable axes itself, and the full variable font crashes its parser.
+- `public/brand/peartree-companies-logo.png` - a PNG copy of the brand logo.
+
+Regenerate both from the originals if the brand assets change; everything else on the card is styled inline in the route.
 
 ## Forms
 
@@ -59,12 +71,34 @@ Both forms post to the `submitInquiry` server action, which validates with zod, 
 
 ## Placeholders to fill
 
-Search the repo for `[` to find them: Tracie's bio, Cristian's last name, Raptor's start year, Mitch's years coaching, the EDIAGD launch date, and the Raptor lobby photo (`story.photo.src` in `companies.ts`).
+| Placeholder | File | Line |
+| --- | --- | --- |
+| `[ONE-LINE BIO FOR TRACIE]` | `src/content/site.ts` | 31 |
+| `Co-founded with Cristian [LAST NAME]` | `src/content/companies.ts` | 131 |
+| `[YEAR]` - the year Raptor Vending started | `src/content/companies.ts` | 133 |
+| `[PHOTO: Raptor fridge and meal display in a building lobby]` - set `story.photo.src` to replace the placeholder tile | `src/content/companies.ts` | 138 |
+| `Launching [DATE]` - EDIAGD launch date | `src/content/companies.ts` | 201 |
+| `[YEARS]` - how long Mitch Hardt has coached service advisors | `src/components/home/field-notes.tsx` | 8 |
 
 ## Launch checklist
 
-- [ ] Set `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GTM_ID` and `INQUIRY_WEBHOOK_URL` in Vercel
+### Environment variables to set in Vercel
+
+Set all three for Production, Preview and Development. Values come from `.env.example`.
+
+| Variable | Value |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | `https://peartreecompanies.com` |
+| `NEXT_PUBLIC_GTM_ID` | `GTM-WLHPDWV7` (the container already on the WordPress site) |
+| `INQUIRY_WEBHOOK_URL` | *blank until the HighLevel inbound webhook URL is ready* |
+
+`NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GTM_ID` are read at build time, so changing either needs a redeploy. Until `INQUIRY_WEBHOOK_URL` is set, production form submissions fail with a message to the visitor, so fill it before announcing the site.
+
+### Remaining steps
+
 - [ ] Fill the placeholders above
-- [ ] Crawl the current WordPress site and add 301 redirects in `next.config.ts` for any URLs worth keeping
+- [ ] Set the three environment variables
+- [x] Crawl the WordPress site for URLs worth redirecting - done, and there are none. That site is a one-pager; its only other URLs are dummy posts, category archives, the feed, attachment pages and three unlisted pages, none of it indexed. The homepage keeps its URL, so no `redirects()` entry is needed.
 - [ ] The WordPress site is set to noindex; this one is indexable, so check robots.txt and the sitemap after the DNS switch
-- [ ] Add an Open Graph image (`src/app/opengraph-image.png`)
+- [x] Add an Open Graph image - `src/app/opengraph-image.tsx`
+- [ ] After the DNS switch, re-check the share card with a scraper (LinkedIn Post Inspector, X card validator) so the old WordPress preview isn't cached

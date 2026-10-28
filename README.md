@@ -6,7 +6,7 @@ The PearTree Companies site, rebuilt off WordPress. Next.js 16 (App Router, Cach
 
 ```bash
 npm install
-cp .env.example .env.local   # then fill in INQUIRY_WEBHOOK_URL
+cp .env.example .env.local   # then fill in SLACK_WEBHOOK_URL
 npm run dev                  # http://localhost:3000
 npm run build && npm run start
 npm run lint
@@ -54,13 +54,21 @@ Regenerate both from the originals if the brand assets change; everything else o
 
 ## Forms
 
-Both forms post to the `submitInquiry` server action, which validates with zod, drops honeypot submissions, and forwards JSON to `INQUIRY_WEBHOOK_URL`:
+Both forms post to the `submitInquiry` server action, which validates with zod, drops honeypot submissions, and posts a Block Kit message to the Slack incoming webhook at `SLACK_WEBHOOK_URL`. It gives up after 10 seconds.
 
-```json
-{ "source": "home" | "partner", "name": "", "email": "", "company": "", "industry": "",
-  "goal": "launch|build|sell|buy|other", "stage": "idea|customers|prototype|live",
-  "message": "", "site": "peartreecompanies.com", "submittedAt": "ISO date" }
-```
+The message is built in `src/lib/slack-inquiry.ts`:
+
+- a header, `New inquiry: home page` or `New inquiry: partner page`
+- a fields block with name and email (as a `mailto:` link), plus company, industry, goal and stage when the visitor supplied them
+- the message in its own section, cut to Slack's 3,000-character section limit
+- a context line with the submit time in Central
+- a `text` fallback, `New inquiry from <name> (<email>)`, for notifications and clients that don't render blocks
+
+Goal and stage print the labels the form shows, not the stored values. Those labels, the values and the zod enums all come from `src/content/inquiry.ts`, so a label can't drift out of sync with what arrives in Slack.
+
+Everything the visitor typed runs through `escapeSlack` first, which encodes `&`, `<` and `>`. That is what keeps a submitted `<!channel>` or `<https://example.com|click>` rendering as plain text instead of a mention or a link.
+
+Without `SLACK_WEBHOOK_URL` the action logs the message it would have sent and reports success in development, and fails with a visitor-facing message in production.
 
 On a successful submit the client pushes one GTM event per submission:
 
@@ -110,9 +118,9 @@ Set all three for Production, Preview and Development. Values come from `.env.ex
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | `https://peartreecompanies.com` |
 | `NEXT_PUBLIC_GTM_ID` | `GTM-WLHPDWV7` (the container already on the WordPress site) |
-| `INQUIRY_WEBHOOK_URL` | *blank until the HighLevel inbound webhook URL is ready* |
+| `SLACK_WEBHOOK_URL` | *blank until the Slack incoming webhook is created* |
 
-`NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GTM_ID` are read at build time, so changing either needs a redeploy. Until `INQUIRY_WEBHOOK_URL` is set, production form submissions fail with a message to the visitor, so fill it before announcing the site.
+`NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GTM_ID` are read at build time, so changing either needs a redeploy. `SLACK_WEBHOOK_URL` is read per request, so setting it takes effect on the next deploy without a rebuild. Until it is set, production form submissions fail with a message to the visitor, so fill it before announcing the site.
 
 ### Remaining steps
 

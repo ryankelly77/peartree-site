@@ -1,9 +1,8 @@
 "use server";
 
 import { z } from "zod";
-
-const goals = ["launch", "build", "sell", "buy", "other"] as const;
-const stages = ["idea", "customers", "prototype", "live"] as const;
+import { goals, stages } from "@/content/inquiry";
+import { buildInquiryMessage } from "@/lib/slack-inquiry";
 
 const optionalText = (max: number) =>
   z
@@ -49,8 +48,9 @@ function readValues(formData: FormData): Partial<Record<InquiryField, string>> {
 }
 
 /**
- * Validates an inquiry and forwards it as JSON to INQUIRY_WEBHOOK_URL
- * (a HighLevel inbound webhook, Zapier, or anything that accepts a POST).
+ * Validates an inquiry and posts it to SLACK_WEBHOOK_URL as a Block Kit
+ * message. Everything the visitor typed is escaped on the way in, so a
+ * submission can't inject a link or an @channel mention.
  */
 export async function submitInquiry(_previous: InquiryState, formData: FormData): Promise<InquiryState> {
   // Honeypot: real visitors never see or fill this field.
@@ -71,15 +71,18 @@ export async function submitInquiry(_previous: InquiryState, formData: FormData)
     return { status: "error", message: "Please check the highlighted fields.", fieldErrors, values };
   }
 
-  const webhookUrl = process.env.INQUIRY_WEBHOOK_URL;
-  const payload = { ...parsed.data, site: "peartreecompanies.com", submittedAt: new Date().toISOString() };
+  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+  const payload = buildInquiryMessage(parsed.data, new Date());
 
   if (!webhookUrl) {
     if (process.env.NODE_ENV !== "production") {
-      console.info("[inquiry] INQUIRY_WEBHOOK_URL is not set; logging instead of sending.", payload);
+      console.info(
+        "[inquiry] SLACK_WEBHOOK_URL is not set; logging instead of sending.",
+        JSON.stringify(payload, null, 2),
+      );
       return { status: "success" };
     }
-    console.error("[inquiry] INQUIRY_WEBHOOK_URL is not set in production.");
+    console.error("[inquiry] SLACK_WEBHOOK_URL is not set in production.");
     return {
       status: "error",
       message: "We couldn't send your message just now. Please try again later.",

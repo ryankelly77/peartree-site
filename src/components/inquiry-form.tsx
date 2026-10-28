@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useRef } from "react";
 import { submitInquiry, type InquiryState } from "@/app/actions";
+import { goalChoices, stageChoices } from "@/content/inquiry";
 import { cn } from "@/lib/cn";
 
 const initialState: InquiryState = { status: "idle" };
@@ -12,13 +13,7 @@ const variants = {
   home: {
     choiceField: "goal",
     choiceLegend: "What are you trying to do?",
-    choices: [
-      { value: "launch", label: "Launch a product" },
-      { value: "build", label: "Build a business" },
-      { value: "sell", label: "Sell an app" },
-      { value: "buy", label: "Buy one of our companies" },
-      { value: "other", label: "Something else" },
-    ],
+    choices: goalChoices,
     messageLabel: "Tell us about it",
     submitLabel: "Send it",
     showIndustry: false,
@@ -26,12 +21,7 @@ const variants = {
   partner: {
     choiceField: "stage",
     choiceLegend: "Where are you today?",
-    choices: [
-      { value: "idea", label: "An idea" },
-      { value: "customers", label: "Customers, no product" },
-      { value: "prototype", label: "A prototype" },
-      { value: "live", label: "A live product that needs to sell" },
-    ],
+    choices: stageChoices,
     messageLabel: "Who is the customer, and what do they need?",
     submitLabel: "Send it to Ryan and Tracie",
     showIndustry: true,

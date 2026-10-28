@@ -16,19 +16,27 @@ export const mainNav: Array<{ key: NavKey; label: string; href: string }> = [
   { key: "team", label: "Who we are", href: "/#team" },
 ];
 
-export const team = [
+export type TeamMember = {
+  name: string;
+  initials: string;
+  role: string;
+  /** Omit until a bio is written. The card renders without it. */
+  bio?: string;
+  tone: "ink" | "bark";
+};
+
+export const team: TeamMember[] = [
   {
     name: "Ryan Kelly",
     initials: "RK",
     role: "Co-Founder",
     bio: "Founded Pear Analytics in 2008. Still builds the software side of the portfolio himself.",
-    tone: "ink" as const,
+    tone: "ink",
   },
   {
     name: "Tracie Mendoza",
     initials: "TM",
     role: "Co-Founder",
-    bio: "[ONE-LINE BIO FOR TRACIE]",
-    tone: "bark" as const,
+    tone: "bark",
   },
 ];

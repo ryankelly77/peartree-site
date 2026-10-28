@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { submitInquiry, type InquiryState } from "@/app/actions";
 import { cn } from "@/lib/cn";
 
@@ -96,6 +96,17 @@ export function InquiryForm({ variant }: { variant: keyof typeof variants }) {
   const [state, formAction, pending] = useActionState(submitInquiry, initialState);
   const values = state.values ?? {};
   const errors = state.fieldErrors ?? {};
+
+  // Report the conversion to GTM once per submission. The action returns a new
+  // state object each time, so tracking which one has been reported keeps a
+  // re-render (or React's double-invoked effects in development) from
+  // pushing the same submission twice.
+  const reported = useRef<InquiryState | null>(null);
+  useEffect(() => {
+    if (state.status !== "success" || reported.current === state) return;
+    reported.current = state;
+    window.dataLayer?.push({ event: "inquiry_submitted", form_source: variant });
+  }, [state, variant]);
 
   if (state.status === "success") {
     return (

@@ -27,7 +27,7 @@ export function Team() {
                 <span className="text-[22px] font-bold stretch-115">{person.name}</span>
                 <span className="font-mono text-[13px] text-muted">{person.role}</span>
               </div>
-              <p className="m-0 text-base leading-[1.6] text-body">{person.bio}</p>
+              {person.bio ? <p className="m-0 text-base leading-[1.6] text-body">{person.bio}</p> : null}
             </div>
           ))}
         </div>

@@ -5,7 +5,9 @@
  * Organization structured data. A company with a `story` also gets its own page
  * at /portfolio/[slug], built from the same template as Raptor Vending.
  *
- * Bracketed text like [DATE] marks a fact that still needs to be supplied.
+ * A fact that isn't known yet is left out rather than written as bracketed
+ * placeholder text: scripts/check-placeholders.mjs fails production builds that
+ * still carry any.
  */
 
 export type CompanyStatus = "operating" | "expanding" | "in-build" | "available";
@@ -30,12 +32,15 @@ export type Link = { label: string; href: string };
 /** One side of the card footer: plain text, or a link. */
 export type CardFooterItem = { text: string } | Link;
 
+/** A card shows one or two footer items, spread apart when there are two. */
+export type CardFooter = [CardFooterItem] | [CardFooterItem, CardFooterItem];
+
 export interface CompanyStory {
   seoDescription: string;
   lead: string;
   facts: { label: string; value: string }[];
-  /** Set `src` once a real photo exists; until then the placeholder text shows. */
-  photo: { src?: string; alt: string; placeholder: string };
+  /** Nothing renders until `src` points at a real photo. */
+  photo: { src?: string; alt: string };
   primaryCta: Link;
   secondaryCta: Link;
   idea: { heading: string; paragraphs: string[] };
@@ -53,7 +58,7 @@ export interface Company {
   summary: string;
   website?: string;
   logo: CompanyLogo;
-  footer: [CardFooterItem, CardFooterItem];
+  footer: CardFooter;
   story?: CompanyStory;
 }
 
@@ -128,14 +133,11 @@ export const companies: Company[] = [
         "Raptor Vending puts fresh meals, snacks and drinks in San Antonio office and medical buildings, with no minimums and a monthly report for every building.",
       lead: "Fresh meals, snacks and drinks for office and medical buildings in San Antonio, run with the reporting of a software company.",
       facts: [
-        { label: "Relationship", value: "Co-founded with Cristian [LAST NAME]" },
         { label: "Market", value: "San Antonio, Texas" },
-        { label: "Started", value: "[YEAR]" },
         { label: "Partnership path", value: "Build a business" },
       ],
       photo: {
         alt: "A Raptor fridge and meal display in a building lobby",
-        placeholder: "[PHOTO: Raptor fridge and meal display in a building lobby]",
       },
       primaryCta: { label: "Visit raptor-vending.com ↗", href: "https://raptor-vending.com" },
       secondaryCta: { label: "For property managers", href: "#buildings" },
@@ -198,7 +200,7 @@ export const companies: Company[] = [
     summary:
       "Every Day Is A Great Day. Daily AI coaching for dealership service advisors, built from a veteran coach's playbook, with impact reporting for managers.",
     logo: { kind: "ediagd" },
-    footer: [{ text: "Partnership with Mitch Hardt" }, { text: "Launching [DATE]" }],
+    footer: [{ text: "Partnership with Mitch Hardt" }],
   },
   {
     slug: "cce",

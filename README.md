@@ -62,6 +62,14 @@ Both forms post to the `submitInquiry` server action, which validates with zod, 
   "message": "", "site": "peartreecompanies.com", "submittedAt": "ISO date" }
 ```
 
+On a successful submit the client pushes one GTM event per submission:
+
+```js
+window.dataLayer?.push({ event: "inquiry_submitted", form_source: "home" | "partner" })
+```
+
+`dataLayer` only exists when `NEXT_PUBLIC_GTM_ID` is set, so the push is a no-op otherwise. Use `inquiry_submitted` as the trigger for the conversion tag in GTM.
+
 ## Next 16 specifics worth knowing
 
 - `cacheComponents` and `partialPrefetching` are on (see `next.config.ts`). Calling `new Date()` during prerender is a build error, which is why the footer year is a `"use cache"` component.
@@ -69,16 +77,28 @@ Both forms post to the `submitInquiry` server action, which validates with zod, 
 - `src/proxy.ts` is the Next 16 name for middleware.
 - Read `node_modules/next/dist/docs/` before using an API from memory (see `AGENTS.md`).
 
-## Placeholders to fill
+## Placeholders
 
-| Placeholder | File | Line |
+None remain. Facts that were still unknown were taken out rather than written as bracketed text, so the copy reads as finished:
+
+| Was | Now | To restore it |
 | --- | --- | --- |
-| `[ONE-LINE BIO FOR TRACIE]` | `src/content/site.ts` | 31 |
-| `Co-founded with Cristian [LAST NAME]` | `src/content/companies.ts` | 131 |
-| `[YEAR]` - the year Raptor Vending started | `src/content/companies.ts` | 133 |
-| `[PHOTO: Raptor fridge and meal display in a building lobby]` - set `story.photo.src` to replace the placeholder tile | `src/content/companies.ts` | 138 |
-| `Launching [DATE]` - EDIAGD launch date | `src/content/companies.ts` | 201 |
-| `[YEARS]` - how long Mitch Hardt has coached service advisors | `src/components/home/field-notes.tsx` | 8 |
+| Tracie's bio | Her card shows name and role only | Add `bio` back to her entry in `src/content/site.ts`; it is optional on `TeamMember` |
+| Cristian's last name | The "Relationship" fact is gone from Raptor's story | Add `{ label: "Relationship", value: "Co-founded with Cristian <last name>" }` to `story.facts` |
+| Year Raptor started | The "Started" fact is gone | Add `{ label: "Started", value: "<year>" }` to `story.facts` |
+| Mitch's years coaching | "has spent his career coaching dealership service advisors" | Reword with the number in `src/components/home/field-notes.tsx` |
+| EDIAGD launch date | The card footer shows one item instead of two | Add `{ text: "Launching <date>" }` to its `footer`, which takes one or two items |
+| Raptor lobby photo | No photo block renders | Set `story.photo.src`; the block appears on its own |
+
+### The guard
+
+`scripts/check-placeholders.mjs` runs as npm's `prebuild` step and fails the build when bracketed copy like `[YEAR]` or `[ONE-LINE BIO FOR TRACIE]` is still in a `.ts` or `.tsx` file under `src/`.
+
+It only exits non-zero when `VERCEL_ENV` is `production`. Local and preview builds print the same list as a warning and carry on, so work in progress is never blocked. Whole-line and block comments are skipped, and the pattern requires an all-caps opening word so it doesn't trip on array indexes, TypeScript tuples or Tailwind arbitrary values like `text-[13px]`. Run it on its own any time:
+
+```bash
+node scripts/check-placeholders.mjs
+```
 
 ## Launch checklist
 
@@ -96,8 +116,9 @@ Set all three for Production, Preview and Development. Values come from `.env.ex
 
 ### Remaining steps
 
-- [ ] Fill the placeholders above
+- [x] Clear the bracketed placeholders - done, and `prebuild` now keeps them from coming back
 - [ ] Set the three environment variables
+- [ ] Add an `inquiry_submitted` trigger and conversion tag in GTM container `GTM-WLHPDWV7`
 - [x] Crawl the WordPress site for URLs worth redirecting - done, and there are none. That site is a one-pager; its only other URLs are dummy posts, category archives, the feed, attachment pages and three unlisted pages, none of it indexed. The homepage keeps its URL, so no `redirects()` entry is needed.
 - [ ] The WordPress site is set to noindex; this one is indexable, so check robots.txt and the sitemap after the DNS switch
 - [x] Add an Open Graph image - `src/app/opengraph-image.tsx`

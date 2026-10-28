@@ -106,11 +106,7 @@ export default async function CompanyPage({ params }: PageProps<"/portfolio/[slu
                   className="object-cover"
                 />
               </div>
-            ) : (
-              <div className="flex aspect-[16/7] w-full items-center justify-center rounded-xs border border-rule bg-sand p-6 text-center font-mono text-[13px] text-muted">
-                {story.photo.placeholder}
-              </div>
-            )}
+            ) : null}
           </div>
         </section>
 

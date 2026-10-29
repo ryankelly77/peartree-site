@@ -7,10 +7,13 @@ import { ButtonLink } from "./ui";
 /**
  * Rendered per page (not in the root layout) so the active link comes from a prop.
  * Reading the pathname in a layout would need a Suspense boundary under Cache Components.
+ *
+ * No rule under the header: the hero's own top padding is what separates it from
+ * the page, so the mark and nav sit directly on the paper.
  */
 export function SiteHeader({ current, ctaHref = "/#contact" }: { current?: NavKey; ctaHref?: string }) {
   return (
-    <header className="gutter border-b border-rule py-4">
+    <header className="gutter py-5">
       <div className="shell flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
         <NextLink href="/" aria-label="PearTree Companies home" className="inline-flex items-center">
           <Image
@@ -21,7 +24,7 @@ export function SiteHeader({ current, ctaHref = "/#contact" }: { current?: NavKe
             unoptimized
             loading="eager"
             fetchPriority="high"
-            className="block h-[76px] w-auto"
+            className="block h-[100px] w-auto"
           />
         </NextLink>
         <nav aria-label="Main" className="flex flex-wrap items-center gap-x-7 gap-y-2 text-[15px] font-medium">

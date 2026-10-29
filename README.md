@@ -32,7 +32,7 @@ npm run lint
 
 Edit `src/content/companies.ts`. A company appears as a card on the home page and in the footer. Add a `story` to give it its own page at `/portfolio/<slug>`; the page, the sitemap entry and the 404 guard pick it up automatically.
 
-Logos go in `public/logos/` as WebP sized about 2x their display height. Set `plate: "dark"` for a logo made for a dark background (Raptor's is white).
+Logos go in `public/logos/` as WebP with a transparent background, sized about 2x their display height. Every company is on `plate: "light"` (a white panel) today; set `plate: "dark"` instead for a mark drawn in white, which would otherwise disappear.
 
 ## Design notes
 

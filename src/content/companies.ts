@@ -122,7 +122,7 @@ export const companies: Company[] = [
       width: 237,
       height: 144,
       cardHeight: 68,
-      plate: "dark",
+      plate: "light",
     },
     footer: [
       { label: "Read the story →", href: "/portfolio/raptor-vending" },

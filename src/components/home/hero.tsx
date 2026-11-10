@@ -1,4 +1,4 @@
-import { ButtonLink, Eyebrow } from "../ui";
+import { ButtonLink } from "../ui";
 
 const youBring = [
   "Years inside an industry",
@@ -39,7 +39,6 @@ export function Hero() {
     <section id="top" className="gutter pt-[clamp(56px,8vw,112px)] pb-[clamp(64px,8vw,120px)]">
       <div className="shell flex flex-wrap items-start gap-14">
         <div className="flex min-w-0 flex-[1_1_560px] flex-col gap-7">
-          <Eyebrow>A holding company in San Antonio, Texas</Eyebrow>
           <h1 className="m-0 text-display-xl font-[750] text-ink stretch-118">
             You know the industry. We build the company around it.
           </h1>

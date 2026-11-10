@@ -10,22 +10,19 @@
  * still carry any.
  */
 
-export type CompanyStatus = "operating" | "expanding" | "in-build" | "available";
+export type CompanyStatus = "operating" | "expanding" | "in-build" | "beta" | "available";
 
-export type CompanyLogo =
-  | {
-      kind: "image";
-      src: string;
-      alt: string;
-      /** Intrinsic size of the file in /public */
-      width: number;
-      height: number;
-      /** Rendered height in the 128px card panel */
-      cardHeight: number;
-      /** Panel color behind the logo. Use "dark" for logos made for dark sites. */
-      plate: "light" | "dark";
-    }
-  | { kind: "ediagd" };
+export type CompanyLogo = {
+  src: string;
+  alt: string;
+  /** Intrinsic size of the file in /public */
+  width: number;
+  height: number;
+  /** Rendered height in the 128px card panel */
+  cardHeight: number;
+  /** Panel color behind the logo. Use "dark" for logos made for dark sites. */
+  plate: "light" | "dark";
+};
 
 export type Link = { label: string; href: string };
 
@@ -73,7 +70,6 @@ export const companies: Company[] = [
       "AI-first performance marketing for mid-market and enterprise brands: Google Ads, SEO and AI visibility, analytics, and custom AI applications.",
     website: "https://pearanalytics.com",
     logo: {
-      kind: "image",
       src: "/logos/pear-analytics.webp",
       alt: "Pear Analytics logo",
       width: 371,
@@ -93,7 +89,6 @@ export const companies: Company[] = [
       "Websites, SEO, PPC and hosting for small businesses that want a capable team without agency overhead.",
     website: "https://pyrusdigitalmedia.com",
     logo: {
-      kind: "image",
       src: "/logos/pyrus-digital-media.webp",
       alt: "Pyrus Digital Media logo",
       width: 179,
@@ -116,7 +111,6 @@ export const companies: Company[] = [
       "Fresh meals, snacks and drinks for San Antonio office and medical buildings, with no minimums for the building and a monthly report from the Raptor Portal.",
     website: "https://raptor-vending.com",
     logo: {
-      kind: "image",
       src: "/logos/raptor-vending.webp",
       alt: "Raptor Vending logo",
       width: 237,
@@ -197,10 +191,17 @@ export const companies: Company[] = [
     number: "04",
     name: "EDIAGD",
     category: "Automotive AI",
-    status: "in-build",
+    status: "beta",
     summary:
       "Every Day Is A Great Day. Daily AI coaching for dealership service advisors, built from a veteran coach's playbook, with impact reporting for managers.",
-    logo: { kind: "ediagd" },
+    logo: {
+      src: "/logos/ediagd.svg",
+      alt: "EDIAGD logo",
+      width: 412,
+      height: 217,
+      cardHeight: 88,
+      plate: "light",
+    },
     footer: [{ text: "Partnership with Mitch Hardt" }],
   },
   {
@@ -212,7 +213,6 @@ export const companies: Company[] = [
     summary: "Accredited online continuing education for insurance professionals.",
     website: "https://cceducation.com",
     logo: {
-      kind: "image",
       src: "/logos/cce.webp",
       alt: "Center for Continuing Education logo",
       width: 213,
@@ -231,7 +231,6 @@ export const companies: Company[] = [
     summary: "Diagnostics and recovery for sites hit by penalties, botched migrations and ranking drops.",
     website: "https://restoremyseo.com",
     logo: {
-      kind: "image",
       src: "/logos/restoremyseo.webp",
       alt: "RestoreMySEO logo",
       width: 439,
@@ -250,6 +249,7 @@ export const statusLabels: Record<CompanyStatus, string> = {
   operating: "Operating",
   expanding: "Expanding",
   "in-build": "In build",
+  beta: "Beta",
   available: "Available",
 };
 

@@ -39,7 +39,7 @@ export default async function CompanyPage({ params }: PageProps<"/portfolio/[slu
   const { story } = company;
   const index = companies.findIndex((entry) => entry.slug === company.slug);
   const next = companies[(index + 1) % companies.length];
-  const darkPlate = company.logo.kind === "image" && company.logo.plate === "dark";
+  const darkPlate = company.logo.plate === "dark";
 
   return (
     <>

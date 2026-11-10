@@ -2,13 +2,13 @@ import Image from "next/image";
 import type { Company, CompanyLogo, CompanyStatus, CardFooterItem } from "@/content/companies";
 import { statusLabels } from "@/content/companies";
 import { cn } from "@/lib/cn";
-import { EdiagdMark } from "./ediagd-mark";
 import { SmartLink } from "./ui";
 
 const statusStyles: Record<CompanyStatus, string> = {
   operating: "border border-bark px-2.5 py-1.5 text-bark",
   expanding: "bg-gold px-2.5 py-1.5 text-ink",
   "in-build": "border border-dashed border-bark px-[9px] py-[5px] text-bark",
+  beta: "border border-dashed border-bark px-[9px] py-[5px] text-bark",
   available: "bg-ink px-2.5 py-1.5 text-paper",
 };
 
@@ -27,7 +27,6 @@ export function StatusTag({ status }: { status: CompanyStatus }) {
 
 /** Logo image on its plate. Shared by the card panel and the company page hero. */
 export function LogoImage({ logo, height }: { logo: CompanyLogo; height?: number }) {
-  if (logo.kind === "ediagd") return <EdiagdMark />;
   return (
     <Image
       src={logo.src}
@@ -42,7 +41,7 @@ export function LogoImage({ logo, height }: { logo: CompanyLogo; height?: number
 }
 
 function LogoPanel({ logo }: { logo: CompanyLogo }) {
-  const dark = logo.kind === "image" && logo.plate === "dark";
+  const dark = logo.plate === "dark";
   return (
     <div
       className={cn(

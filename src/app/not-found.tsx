@@ -11,7 +11,7 @@ export default function NotFound() {
           <Eyebrow>404</Eyebrow>
           <h1 className="m-0 text-display-lg font-bold stretch-118">That page isn&apos;t here.</h1>
           <p className="m-0 text-lg leading-[1.6] text-body">
-            It may have moved when we rebuilt the site. The portfolio and our partnership model are a click away.
+            It may have moved when we rebuilt the site. Try the portfolio or the partnership page.
           </p>
           <div className="flex flex-wrap gap-3">
             <ButtonLink href="/">Go to the home page</ButtonLink>

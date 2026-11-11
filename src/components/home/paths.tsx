@@ -4,7 +4,7 @@ const paths = [
   {
     letter: "A",
     title: "Launch a product",
-    body: "You run a business and your customers keep asking for the same thing. We design and build it, then sell it to the customers you already have and the ones you don't.",
+    body: "You run a business and your customers keep asking for the same thing. We design and build it, then sell it to your customers and to the rest of the market.",
     note: "In practice: EDIAGD",
   },
   {

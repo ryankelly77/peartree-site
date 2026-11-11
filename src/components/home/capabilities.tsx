@@ -10,7 +10,7 @@ const capabilities = [
   {
     number: "3.2",
     title: "AI and software",
-    body: "Production applications built in-house. AI where it earns its place, with guardrails: the math runs in code and the model writes the words.",
+    body: "Production applications built in-house. AI where it earns its place: the math runs in code and the model writes the words.",
     items: ["Web and mobile apps", "AI features and agents", "Integrations and data pipelines", "Admin and reporting portals"],
   },
   {
@@ -36,7 +36,7 @@ export function Capabilities() {
           <h2 className="m-0 text-display-lg font-bold stretch-118">One team behind every launch</h2>
           <p className="m-0 text-lg leading-[1.6] text-body">
             The same people who run marketing for Pear Analytics clients build the software and run the operations
-            for PearTree companies. You get the whole bench, not a referral list.
+            for PearTree companies. Nothing gets farmed out to a partner agency.
           </p>
         </div>
 
@@ -62,8 +62,8 @@ export function Capabilities() {
             No vibe coding.
           </p>
           <p className="m-0 flex-[1_1_460px] text-lg leading-[1.6] text-body">
-            We use AI to move faster, not to skip the engineering. Every app we ship is reviewed, tested and owned by
-            people who will still be answering for it next year.
+            We use AI to move faster. The engineering still happens: every app we ship is reviewed, tested and owned
+            by people who will still be answering for it next year.
           </p>
         </div>
       </div>

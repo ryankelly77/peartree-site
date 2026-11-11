@@ -35,7 +35,7 @@ export default function HomePage() {
           id="contact"
           eyebrow="07 · Contact"
           title="Bring us an idea."
-          intro="Tell us what you're working on. It goes straight to Ryan and Tracie, not a sales queue."
+          intro="Tell us what you're working on. Ryan and Tracie read every one of these themselves."
           variant="home"
         />
       </main>

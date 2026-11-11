@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const heroFacts = [
-  { label: "Who", value: "Founders, operators and companies with real industry expertise" },
+  { label: "Who", value: "Founders, operators and companies who know an industry from the inside" },
   { label: "We bring", value: "Marketing, AI, software and operations" },
   { label: "We're paid by", value: "Shared revenue, equity, or a joint venture" },
   { label: "Based in", value: "San Antonio, Texas" },
@@ -73,7 +73,7 @@ const dealSteps = [
   },
   {
     title: "Prototype",
-    body: "A fixed-scope build of the core idea, usually a paid engagement, so both sides have something real to judge.",
+    body: "A fixed-scope build of the core idea, usually a paid engagement. Both sides get to judge working software.",
     outcomeLabel: "You leave with",
     outcome: "A working prototype you can put in front of customers, and a clear picture of what the full build takes.",
   },
@@ -85,7 +85,7 @@ const dealSteps = [
   },
   {
     title: "Build, launch, grow",
-    body: "Our team runs product, marketing and operations alongside yours, and stays through growth, not just launch day.",
+    body: "Our team runs product, marketing and operations alongside yours, and stays on well past launch day.",
     outcomeLabel: "You get",
     outcome: "A roadmap, a launch plan, live marketing programs and a monthly report on how the company is doing.",
   },
@@ -96,11 +96,11 @@ const criteria = [
   { title: "A market that pays", body: "Buyers with budget and a problem they already spend money on." },
   {
     title: "A reason we change the outcome",
-    body: "Software, AI or marketing has to be the missing piece, not a nice extra.",
+    body: "The business should be stuck on something software, AI or marketing actually fixes.",
   },
   {
-    title: "Years, not months",
-    body: "We're building companies to keep or to sell well, so we want partners in it for the long run.",
+    title: "In it for years",
+    body: "We're building companies to keep or to sell well. Either way that takes years, and we want partners who plan to be there for them.",
   },
 ];
 
@@ -126,7 +126,8 @@ const faqs = [
   },
   {
     question: "How long until launch?",
-    answer: "It depends on the product. The prototype step exists so we can give you a real answer instead of a guess.",
+    answer:
+      "It depends on the product. We use the prototype step to find out, then quote the full build from what it taught us.",
   },
   {
     question: "Are any of your companies for sale?",
@@ -151,9 +152,9 @@ export default function PartnerPage() {
               <Eyebrow>How we partner</Eyebrow>
               <h1 className="m-0 text-display-xl font-[750] stretch-118">Partnerships, not projects.</h1>
               <p className="m-0 max-w-[640px] text-lead text-body">
-                An agency sells hours and hands you the result. We would rather own part of what we build with you,
-                so how we do depends on how the company does. Here is what that looks like, who it&apos;s for, and how
-                a deal comes together.
+                An agency sells hours and hands you the result. We&apos;d rather own part of what we build with you,
+                so our upside and yours move together. Here is what that looks like, who it&apos;s for, and how a
+                deal comes together.
               </p>
             </div>
             <dl className="m-0 min-w-0 flex-[1_1_400px] border-t border-ink text-[15px]">

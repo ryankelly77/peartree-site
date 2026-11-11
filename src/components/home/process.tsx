@@ -7,7 +7,7 @@ const steps = [
   },
   {
     title: "Prototype",
-    body: "We build a working prototype, so both sides decide on something real instead of a slide.",
+    body: "We build a working prototype, so both sides are deciding with the product in front of them.",
   },
   {
     title: "Terms",
@@ -51,7 +51,7 @@ export function Process() {
                 fix
               </li>
               <li>You have customers, an audience, or a way to reach them</li>
-              <li>You want a partner with something at stake, not a vendor</li>
+              <li>You want a partner whose upside depends on how the company does</li>
             </ul>
           </div>
           <div className="flex flex-col gap-[18px] rounded-xs border border-rule p-8">

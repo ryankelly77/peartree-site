@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { LogoImage, StatusTag } from "@/components/company-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { ButtonLink, Eyebrow } from "@/components/ui";
+import { ButtonLink } from "@/components/ui";
 import { companies, companiesWithStories, getCompany } from "@/content/companies";
 import { cn } from "@/lib/cn";
 
@@ -69,7 +69,7 @@ export default async function CompanyPage({ params }: PageProps<"/portfolio/[slu
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="font-mono text-xs text-muted">
-                    No. {company.number} · {company.category}
+                    {company.category}
                   </span>
                   <StatusTag status={company.status} />
                 </div>
@@ -113,7 +113,6 @@ export default async function CompanyPage({ params }: PageProps<"/portfolio/[slu
         <section className="gutter section-y-sm border-t border-rule">
           <div className="shell flex flex-wrap gap-12">
             <div className="flex flex-[1_1_380px] flex-col gap-5">
-              <Eyebrow>01 · The idea</Eyebrow>
               <h2 className="m-0 text-display-md font-bold stretch-118">{story.idea.heading}</h2>
             </div>
             <div className="flex flex-[1_1_560px] flex-col gap-5 text-lg leading-[1.65] text-body">
@@ -129,7 +128,6 @@ export default async function CompanyPage({ params }: PageProps<"/portfolio/[slu
         <section className="gutter section-y-sm border-y border-rule bg-sand">
           <div className="shell flex flex-col gap-10">
             <div className="flex flex-col gap-5">
-              <Eyebrow>02 · What PearTree built</Eyebrow>
               <h2 className="m-0 text-display-md font-bold stretch-118">{story.built.heading}</h2>
             </div>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-5">
@@ -147,7 +145,6 @@ export default async function CompanyPage({ params }: PageProps<"/portfolio/[slu
         <section className="gutter section-y-sm">
           <div className="shell flex flex-col gap-10">
             <div className="flex flex-col gap-5">
-              <Eyebrow>03 · Where it stands</Eyebrow>
               <h2 className="m-0 text-display-md font-bold stretch-118">{story.standing.heading}</h2>
             </div>
             <dl className="m-0 grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] border-t-2 border-ink">
@@ -167,7 +164,6 @@ export default async function CompanyPage({ params }: PageProps<"/portfolio/[slu
         <section id={story.closer.id} className="surface-dark gutter section-y-sm bg-night text-cream">
           <div className="shell flex flex-wrap items-center justify-between gap-x-16 gap-y-8">
             <div className="flex flex-[1_1_560px] flex-col gap-[18px]">
-              <Eyebrow tone="dark">{story.closer.eyebrow}</Eyebrow>
               <h2 className="m-0 text-display-md font-bold text-paper stretch-118">{story.closer.heading}</h2>
               <p className="m-0 text-lg leading-[1.6] text-night-text">{story.closer.body}</p>
             </div>
@@ -190,7 +186,7 @@ export default async function CompanyPage({ params }: PageProps<"/portfolio/[slu
               href={next.story ? `/portfolio/${next.slug}` : `/#${next.slug}`}
               className="flex flex-col gap-2.5 rounded-xs border border-ink bg-card p-7 text-right text-ink no-underline hover:bg-paper hover:text-ink"
             >
-              <span className="font-mono text-xs text-muted">Next · No. {next.number} →</span>
+              <span className="font-mono text-xs text-muted">Next →</span>
               <span className="text-[26px] font-bold stretch-116">{next.name}</span>
             </NextLink>
           </div>

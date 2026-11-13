@@ -72,7 +72,7 @@ export function CompanyCard({ company }: { company: Company }) {
       <LogoPanel logo={company.logo} />
       <div className="flex items-center justify-between gap-3">
         <span className="font-mono text-xs text-muted">
-          No. {company.number} · {company.category}
+          {company.category}
         </span>
         <StatusTag status={company.status} />
       </div>

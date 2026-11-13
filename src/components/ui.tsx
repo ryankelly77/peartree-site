@@ -65,39 +65,13 @@ export function ButtonLink({
   );
 }
 
-/** Small mono label with a gold square, used above every section heading. */
-export function Eyebrow({
-  children,
-  tone = "light",
-  className,
-}: {
-  children: ReactNode;
-  tone?: "light" | "dark";
-  className?: string;
-}) {
-  return (
-    <div
-      className={cn(
-        "flex items-center gap-3 font-mono text-xs uppercase tracking-[0.12em]",
-        tone === "dark" ? "text-night-muted" : "text-muted",
-        className,
-      )}
-    >
-      <span aria-hidden="true" className="inline-block size-2 bg-gold" />
-      {children}
-    </div>
-  );
-}
-
-/** Eyebrow + h2, with an optional paragraph that sits to the right on wide screens. */
+/** Section h2, with an optional paragraph that sits to the right on wide screens. */
 export function SectionHeader({
-  eyebrow,
   title,
   aside,
   tone = "light",
   size = "lg",
 }: {
-  eyebrow: ReactNode;
   title: ReactNode;
   aside?: ReactNode;
   tone?: "light" | "dark";
@@ -106,7 +80,6 @@ export function SectionHeader({
   return (
     <div className="flex flex-wrap items-end justify-between gap-6">
       <div className="flex flex-[1_1_520px] flex-col gap-5">
-        <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
         <h2
           className={cn(
             "m-0 font-bold stretch-118",

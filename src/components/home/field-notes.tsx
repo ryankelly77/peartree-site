@@ -29,7 +29,7 @@ export function FieldNotes() {
   return (
     <section className="gutter section-y border-y border-rule bg-sand">
       <div className="shell flex flex-col gap-12">
-        <SectionHeader eyebrow="04 · Field notes" title="What partnership looks like" />
+        <SectionHeader title="What partnership looks like" />
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,460px),1fr))] gap-5">
           {notes.map((note) => (

@@ -1,26 +1,25 @@
-import { Eyebrow } from "../ui";
 
 const capabilities = [
   {
-    number: "3.1",
+    number: "01",
     title: "Go-to-market",
     body: "Positioning, brand, launch plans and paid acquisition. Pear Analytics has run Google Ads, SEO and analytics programs since 2008.",
     items: ["Brand and positioning", "Google Ads and paid social", "SEO and AI visibility", "Launch plans"],
   },
   {
-    number: "3.2",
+    number: "02",
     title: "AI and software",
     body: "Production applications built in-house. AI where it earns its place: the math runs in code and the model writes the words.",
     items: ["Web and mobile apps", "AI features and agents", "Integrations and data pipelines", "Admin and reporting portals"],
   },
   {
-    number: "3.3",
+    number: "03",
     title: "Operations",
     body: "The systems a company runs on: CRM and automation, analytics, customer reporting, hosting and security monitoring.",
     items: ["CRM and marketing automation", "Analytics and dashboards", "Hosting and security", "Customer reporting"],
   },
   {
-    number: "3.4",
+    number: "04",
     title: "Shared back office",
     body: "Company setup, shared tools and the infrastructure every PearTree company runs on, so a new venture doesn't start from zero.",
     items: ["Company setup", "Shared CRM and hosting", "Brand and web standards"],
@@ -32,7 +31,6 @@ export function Capabilities() {
     <section id="approach" className="gutter section-y">
       <div className="shell flex flex-col gap-12">
         <div className="flex max-w-[820px] flex-col gap-5">
-          <Eyebrow>03 · What we bring</Eyebrow>
           <h2 className="m-0 text-display-lg font-bold stretch-118">One team behind every launch</h2>
           <p className="m-0 text-lg leading-[1.6] text-body">
             The same people who run marketing for Pear Analytics clients build the software and run the operations

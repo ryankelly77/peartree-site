@@ -27,7 +27,6 @@ export function Paths() {
       <div className="shell flex flex-col gap-14">
         <SectionHeader
           tone="dark"
-          eyebrow="02 · How we partner"
           title="Three ways in"
           aside="Every partnership starts with someone who knows a market better than we do. What changes is the piece that's missing."
         />

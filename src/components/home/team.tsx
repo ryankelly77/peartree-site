@@ -1,12 +1,10 @@
 import { team } from "@/content/site";
-import { Eyebrow } from "../ui";
 
 export function Team() {
   return (
     <section id="team" className="gutter section-y border-t border-rule">
       <div className="shell flex flex-wrap gap-12">
         <div className="flex flex-[1_1_420px] flex-col gap-5">
-          <Eyebrow>06 · Who we are</Eyebrow>
           <h2 className="m-0 text-display-lg font-bold stretch-118">Run by operators</h2>
           <p className="m-0 text-lg leading-[1.6] text-body">
             PearTree is run by the people who built Pear Analytics. We still do the work ourselves.

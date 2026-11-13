@@ -23,7 +23,7 @@ export function Process() {
   return (
     <section className="gutter section-y">
       <div className="shell flex flex-col gap-12">
-        <SectionHeader eyebrow="05 · Process" title="From first call to launch" />
+        <SectionHeader title="From first call to launch" />
 
         <ol className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-8 p-0">
           {steps.map((step, index) => (

@@ -43,12 +43,11 @@ export interface CompanyStory {
   idea: { heading: string; paragraphs: string[] };
   built: { heading: string; items: { label: string; title: string; body: string }[] };
   standing: { heading: string; stats: { value: string; label: string }[] };
-  closer: { id: string; eyebrow: string; heading: string; body: string; cta: Link };
+  closer: { id: string; heading: string; body: string; cta: Link };
 }
 
 export interface Company {
   slug: string;
-  number: string;
   name: string;
   category: string;
   status: CompanyStatus;
@@ -62,7 +61,6 @@ export interface Company {
 export const companies: Company[] = [
   {
     slug: "pear-analytics",
-    number: "01",
     name: "Pear Analytics",
     category: "Marketing and AI",
     status: "operating",
@@ -81,9 +79,8 @@ export const companies: Company[] = [
   },
   {
     slug: "pyrus-digital-media",
-    number: "02",
     name: "Pyrus Digital Media",
-    category: "Small business",
+    category: "Small Business Digital Marketing",
     status: "operating",
     summary:
       "Websites, SEO, PPC and hosting for small businesses that want a capable team without agency overhead.",
@@ -103,7 +100,6 @@ export const companies: Company[] = [
   },
   {
     slug: "raptor-vending",
-    number: "03",
     name: "Raptor Vending",
     category: "Smart retail",
     status: "expanding",
@@ -179,7 +175,6 @@ export const companies: Company[] = [
       },
       closer: {
         id: "buildings",
-        eyebrow: "For property managers",
         heading: "Have a building in San Antonio?",
         body: "No minimums, no revenue guarantees, and a monthly report you can share with tenants.",
         cta: { label: "Talk to Raptor ↗", href: "https://raptor-vending.com" },
@@ -188,7 +183,6 @@ export const companies: Company[] = [
   },
   {
     slug: "ediagd",
-    number: "04",
     name: "EDIAGD",
     category: "Automotive AI",
     status: "beta",
@@ -206,7 +200,6 @@ export const companies: Company[] = [
   },
   {
     slug: "cce",
-    number: "05",
     name: "CCE",
     category: "Online education",
     status: "operating",
@@ -224,7 +217,6 @@ export const companies: Company[] = [
   },
   {
     slug: "restoremyseo",
-    number: "06",
     name: "RestoreMySEO",
     category: "SEO recovery",
     status: "available",

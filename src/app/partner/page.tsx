@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { InquirySection } from "@/components/inquiry-section";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { Eyebrow, SectionHeader } from "@/components/ui";
+import { SectionHeader } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "How we partner",
@@ -149,7 +149,6 @@ export default function PartnerPage() {
         <section className="gutter pt-[clamp(56px,8vw,112px)] pb-[clamp(56px,7vw,96px)]">
           <div className="shell flex flex-wrap items-end gap-14">
             <div className="flex min-w-0 flex-[1_1_620px] flex-col gap-7">
-              <Eyebrow>How we partner</Eyebrow>
               <h1 className="m-0 text-display-xl font-[750] stretch-118">Partnerships, not projects.</h1>
               <p className="m-0 max-w-[640px] text-lead text-body">
                 An agency sells hours and hands you the result. We&apos;d rather own part of what we build with you,
@@ -173,7 +172,6 @@ export default function PartnerPage() {
         <section className="gutter section-y-md border-t border-rule">
           <div className="shell flex flex-col gap-10">
             <SectionHeader
-              eyebrow="01 · The model"
               title="What each side puts in"
               aside="You stay the expert on the customer. We take the work most founders end up hiring three different firms to do."
             />
@@ -225,7 +223,6 @@ export default function PartnerPage() {
         <section className="surface-dark gutter section-y-md bg-night text-cream">
           <div className="shell flex flex-col gap-12">
             <div className="flex max-w-[820px] flex-col gap-5">
-              <Eyebrow tone="dark">02 · Structures</Eyebrow>
               <h2 className="m-0 text-display-lg font-bold text-paper stretch-118">Three common shapes</h2>
               <p className="m-0 text-lg leading-[1.6] text-night-text">
                 None of these is a template. We get specific about the numbers before anyone signs.
@@ -249,7 +246,6 @@ export default function PartnerPage() {
         <section className="gutter section-y-md">
           <div className="shell flex flex-wrap gap-12">
             <div className="flex flex-[1_1_380px] flex-col gap-5">
-              <Eyebrow>03 · Ownership</Eyebrow>
               <h2 className="m-0 text-display-lg font-bold stretch-118">Who owns what, in writing</h2>
               <p className="m-0 text-lg leading-[1.6] text-body">
                 Partnerships go wrong when nobody wrote down the hard parts. We put them in a short interim agreement
@@ -269,7 +265,7 @@ export default function PartnerPage() {
 
         <section className="gutter section-y-md border-y border-rule bg-sand">
           <div className="shell flex flex-col gap-12">
-            <SectionHeader eyebrow="04 · How a deal comes together" title="Four steps, each one a decision point" />
+            <SectionHeader title="Four steps, each one a decision point" />
             <ol className="m-0 flex list-none flex-col border-t border-ink p-0">
               {dealSteps.map((step, index) => (
                 <li
@@ -297,11 +293,11 @@ export default function PartnerPage() {
 
         <section className="gutter section-y-md">
           <div className="shell flex flex-col gap-10">
-            <SectionHeader eyebrow="05 · What we look for" title="The four things every partnership has" />
+            <SectionHeader title="The four things every partnership has" />
             <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-5">
               {criteria.map((item, index) => (
                 <div key={item.title} className="flex flex-col gap-3 rounded-xs border border-rule bg-card p-7">
-                  <span className="font-mono text-[13px] text-muted">5.{index + 1}</span>
+                  <span className="font-mono text-[13px] text-muted">{String(index + 1).padStart(2, "0")}</span>
                   <span className="text-xl font-bold stretch-115">{item.title}</span>
                   <span className="text-base leading-[1.6] text-body">{item.body}</span>
                 </div>
@@ -313,7 +309,6 @@ export default function PartnerPage() {
         <section className="gutter pb-[clamp(64px,8vw,112px)]">
           <div className="shell flex flex-wrap gap-12">
             <div className="flex flex-[1_1_380px] flex-col gap-5">
-              <Eyebrow>06 · Questions</Eyebrow>
               <h2 className="m-0 text-display-lg font-bold stretch-118">Before you ask</h2>
             </div>
             <div className="flex flex-[1_1_640px] flex-col border-t border-ink">
@@ -331,7 +326,6 @@ export default function PartnerPage() {
 
         <InquirySection
           id="start"
-          eyebrow="Start here"
           title="Tell us what you know."
           intro="A few sentences is enough. The more you tell us about the customer, the better the first call goes."
           variant="partner"

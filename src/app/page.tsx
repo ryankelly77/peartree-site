@@ -33,7 +33,6 @@ export default function HomePage() {
         <Team />
         <InquirySection
           id="contact"
-          eyebrow="07 · Contact"
           title="Bring us an idea."
           intro="Tell us what you're working on. Ryan and Tracie read every one of these themselves."
           variant="home"

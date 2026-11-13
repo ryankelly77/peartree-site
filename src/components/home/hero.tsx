@@ -53,11 +53,6 @@ export function Hero() {
               See the portfolio
             </ButtonLink>
           </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2 font-mono text-[13px] text-muted">
-            <span>Performance marketing since 2008</span>
-            <span>Software we build and run ourselves</span>
-            <span>Co-founded by Ryan Kelly and Tracie Mendoza</span>
-          </div>
         </div>
 
         <div className="min-w-0 flex-[1_1_420px] rounded-xs border border-rule bg-card">
